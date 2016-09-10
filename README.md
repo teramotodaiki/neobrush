@@ -1,6 +1,8 @@
 Forked https://github.com/riebschlager/neobrush.
 
-## Visit [neobrush-h4p](https://teramotodaiki.github.io/neobrush/).
+
+## Visit [neobrush-h4p](https://teramotodaiki.github.io/neobrush/NeoBrush-P5js/) to Hack-for-Play.
+
 
 ## Edit
 
