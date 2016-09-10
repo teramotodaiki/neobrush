@@ -1,12 +1,12 @@
-neobrush
-========
+Forked https://github.com/riebschlager/neobrush.
 
-A crazy new paintbrush to tickle your brainballs.
+## Visit [neobrush-h4p](https://teramotodaiki.github.io/neobrush/).
 
-## examples
+## Edit
 
-![example](https://s3-us-west-2.amazonaws.com/the816/neobrush-1.jpg)
+1. **npm install**
+2. **npm start**
+2. http://localhost:3000
 
-![example](https://s3-us-west-2.amazonaws.com/the816/neobrush-2.jpg)
 
-![example](https://s3-us-west-2.amazonaws.com/the816/neobrush-3.jpg)
+
