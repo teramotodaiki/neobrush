@@ -14,19 +14,23 @@
   <script async type="text/javascript">
   var sketch = {ui: {}};
   window.addEventListener('load', function () {
-    h4p('neobrush', {ui: sketch.ui}).then(players => {
-      const player = players[0];
-      player.addEventListener('load', function once({child}) {
-        const set = (property, value) => child.child.postMessage({property, value}, '*');
+    h4p({
+      screen: {
+        ui: sketch.ui
+      }
+    }).then(function (players) {
+      var player = players[0];
+      player.on('screen.load', function once({child}) {
+        var set = function (property, value) { child.child.postMessage({property, value}, '*'); };
         var ui = sketch.ui;
         Object.defineProperty(sketch, 'ui', {
           configurable: true, enumerable: true,
-          get: () => ui,
-          set: (value) => set('ui', ui = value)
+          get: function () { return ui; },
+          set: function (value) { return set('ui', ui = value); }
         });
-        sketch.updateSource = (colorSource) => set('updateSource', colorSource);
-        sketch.saveme = (colorSource) => set('saveme');
-        sketch.clearme = (colorSource) => set('clearme');
+        sketch.updateSource = function (colorSource) { set('updateSource', colorSource); };
+        sketch.saveme = function (colorSource) { set('saveme'); }
+        sketch.clearme = function (colorSource) { set('clearme') };
       });
     });
   });
@@ -150,9 +154,9 @@
 
   // connect to parent...
   sketch.ui = Hack.parent.model.ui;
-  Hack.parent.child.addEventListener('message', (e) => {
-    const {property, value} = e.data;
-    switch (property) {
+  Hack.parent.child.addEventListener('message', function (e) {
+    var value = e.data.value;
+    switch (e.data.property) {
       case 'updateSource': sketch.updateSource(value); break;
       case 'ui': sketch.ui = value; break;
       case 'clearme': sketch.clearme(); break;
@@ -220,7 +224,7 @@
         <button ng-click="sketch.saveme()" class="btn btn-sm btn-primary">Save</button>
         <button ng-click="sketch.clearme()" class="btn btn-sm btn-warning">Clear</button>
       </div>
-      <div class="col-sm-10 neobrush" data-target="#script1" style="height: 80vh"></div>
+      <div class="col-sm-10 h4p__container" data-target="#script1" style="height: 80vh"></div>
     </div>
   </div>
 </body>
